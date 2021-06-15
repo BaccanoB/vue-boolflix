@@ -36,7 +36,11 @@ export default {
            })
             .then((res) => {
               this.movies = res.data.results;
-              console.log('film',this.movies);
+              this.movies.forEach(movie => {
+                movie.stelle = Math.floor(movie.vote_average / 2);
+                movie.vote_average = movie.stelle
+                console.log("voto",movie.vote_average);
+              })
               this.allResults=this.movies.concat(this.series)
             })
         },
@@ -47,7 +51,11 @@ export default {
            })
            .then((res) => {
               this.series = res.data.results;
-              console.log('series',this.series);
+              this.series.forEach(serie => {
+                serie.stelle = Math.floor(serie.vote_average / 2);
+                serie.vote_average = serie.stelle
+                console.log(serie.vote_average);
+              })
               this.allResults=this.series.concat(this.movies)
             })
       },
@@ -62,5 +70,6 @@ export default {
 
 <style lang="scss">
   @import './style/general';
-
+  @import '~@fortawesome/fontawesome-free/css/all.min.css';
 </style>
+  
