@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @userResearch='newQuery' />
-    <Main :movies="movies" />
+    <Main :search="allResults"/>
   </div>
 </template>
 
@@ -19,28 +19,42 @@ export default {
   data() {
     return {
       params:{
-        url:'https://api.themoviedb.org/3/search/movie',
         api_key: '838b4a196c57a8cffba225213ba6f953',
         query: 'ritorno',
         language: 'it-IT'
       },
-      movies: []
+      movies: [],
+      series:[],
+      allResults:[]
     }
   },
   methods: {
       getMovies() {
         axios
-           .get(this.params.url, {
+           .get('https://api.themoviedb.org/3/search/movie', {
              params: this.params
            })
             .then((res) => {
               this.movies = res.data.results;
-              console.log(this.movies);
+              console.log('film',this.movies);
+              this.allResults=this.movies.concat(this.series)
             })
         },
+      getSeries(){
+         axios
+           .get('https://api.themoviedb.org/3/search/tv', {
+             params: this.params
+           })
+           .then((res) => {
+              this.series = res.data.results;
+              console.log('series',this.series);
+              this.allResults=this.series.concat(this.movies)
+            })
+      },
       newQuery(text){
         this.params.query=text;
         this.getMovies();
+        this.getSeries();
       }
   }
 }

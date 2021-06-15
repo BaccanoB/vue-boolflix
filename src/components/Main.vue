@@ -1,13 +1,15 @@
 <template>
     <section>
-        <div id="container">
-            <div v-for="movie in movies" :key="movie.id">
-                <p>{{ movie.title }}</p>
-                <p>{{ movie.original_title }}</p>
-                <img v-if="movie.original_language == 'it'" src="../assets/it.png" alt="">
-                <img v-else-if="movie.original_language == 'en'" src="../assets/en.png" alt="">
-                <p v-else >{{ movie.original_language }}</p>
-                <p>{{ movie.vote_average }}</p>
+        <div id="bg_opacity">
+            <div id="container">
+                <div v-for="result in search" :key="result.id">
+                    <p>{{ result.title||result.name }}</p>
+                    <p>{{ result.original_title||result.original_name }}</p>
+                    <img v-if="result.original_language == 'it'" src="../assets/it.png" alt="">
+                    <img v-else-if="result.original_language == 'en'" src="../assets/en.png" alt="">
+                    <p v-else >{{ result.original_language }}</p>
+                    <p>{{ result.vote_average }}</p>
+                </div>
             </div>
         </div>
     </section>
@@ -16,7 +18,7 @@
 <script>
 export default {
     name:'Main',
-    props: ['movies']
+    props: ['search']
 }
 
 </script>
@@ -25,27 +27,36 @@ export default {
     section {
         width: 100%;
         height: calc(100% - 80px);
-        background-color: #303030;
+        // background-image: url('../assets/jumbotron.jpg');
+        // background-size: cover;
 
-        #container {
-            width: 80%;
-            margin: 0 auto;
+        #bg_opacity {
+            position: relative;
+            width: 100%;
             height: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.3);
 
-            & > div {
-                width: calc(100% / 6);
-                height: 200px;
-                margin: 10px;
-                text-align: center;
+            #container {
+                width: 80%;
+                margin: 0 auto;
+                height: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
 
-                img {
-                    width: 20px;
+                & > div {
+                    width: calc(100% / 6);
+                    margin: 10px;
+                    text-align: center;
+
+                    img {
+                        width: 20px;
+                    }
                 }
             }
+
+
         }
     }
 </style>
