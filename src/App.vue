@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header @userResearch='newQuery' />
-    <Main :search="allResults"/>
+      <Header @userResearch='newQuery' />
+      <Main :search="allResults"/>
   </div>
 </template>
 
@@ -37,7 +37,7 @@ export default {
             .then((res) => {
               this.movies = res.data.results;
               this.movies.forEach(movie => {
-                movie.stelle = Math.floor(movie.vote_average / 2);
+                movie.stelle = Math.ceil(movie.vote_average / 2);
                 movie.vote_average = movie.stelle
                 console.log("voto",movie.vote_average);
               })

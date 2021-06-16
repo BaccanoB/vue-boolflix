@@ -28,6 +28,8 @@ export default {
 
 <style lang="scss" scoped>
     section {
+        position: fixed;
+        top: 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -35,6 +37,7 @@ export default {
         width: 100%;
         height: 80px;
         background-color: black;
+        z-index: 2;
 
         div {
             display: flex;
