@@ -4,8 +4,8 @@
             <div id="container">
                 <div class="card" v-for="result in search" :key="result.id">
                     <div class="info_container">
-                        <p><span>Titolo:</span> {{ result.title||result.name }}</p>
-                        <p><span>Titolo originale:</span> {{ result.original_title||result.original_name }}</p>
+                        <p><span>Titolo:</span>"{{ result.title||result.name }}"</p>
+                        <p><span>Titolo originale:</span>"{{ result.original_title||result.original_name }}"</p>
                         <img class="flag" v-if="result.original_language == 'it'" src="../assets/it.png" alt="flag">
                         <img class="flag" v-else-if="result.original_language == 'en'" src="../assets/en.png" alt="flag">
                         <p v-else >Lingua: {{ result.original_language }}</p>
@@ -16,7 +16,7 @@
                     </div>
                     <div class="poster_container">
                          <img class="null_img poster" v-if="result.poster_path == null" src="../assets/notImage.jpg" alt="img">
-                        <img class="poster" v-else :src="'https://image.tmdb.org/t/p/'+ '/w185/'+ result.poster_path" alt="img">
+                        <img class="poster" v-else :src="'https://image.tmdb.org/t/p/'+ '/w342/'+ result.poster_path" alt="img">
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@ export default {
         width: 100%;
         min-height: 100vh;
         margin-top: 80px;
-        background-image: url(../assets/jumbotron.jpg);
+        background-image: url(../assets/jumbotron.png);
         background-repeat:repeat;
 
         #opacity {
@@ -55,8 +55,8 @@ export default {
             justify-content: center;
 
             .card {
-                width: 185px;
-                height: 250px;
+                width: 342px;
+                height: 513px;
                 margin: 40px 10px;
                 box-shadow: 3px 3px 3px   rgba(241, 237, 237, 0.9);
                 overflow: hidden;
@@ -65,23 +65,20 @@ export default {
                     display: none;
                     height: 100%;
                     width: 100%;
-                    padding: 3px 5px;
+                    padding: 20px;
                     background-color: rgb(36, 34, 34);
                     color: white;
 
                     span {
                         color: #DC1A28;
-                        font-size: 15px;
+                        font-size: 25px;
+                        text-transform: uppercase;
                     }
 
                     p {
-                        font-size: 13px;
-                        margin: 2px 0;
+                        font-size: 20px;
+                        margin: 10px 0;
 
-                    }
-
-                    .overview {
-                        font-size: 45%;
                     }
 
                     .star {
@@ -90,22 +87,26 @@ export default {
                     }
 
                     .flag {
-                        width: 20px;
-                        margin: 2px 0;
+                        width: 50px;
+                        margin: 20px 0;
                     }
 
                     .fa-star{
                         color: #DC1A28;
+                    }
+
+                    .overview{
+                        font-size: 15px;
                     }
                 }
 
                 .poster_container{
                     height: 100%;
 
-                    img{
-                        width: 100%;
+                     img {
                         height: 100%;
                     }
+
                     
                     .null_img {
                         width: 100%;

@@ -25,7 +25,7 @@ export default {
       },
       movies: [],
       series:[],
-      allResults:[]
+      allResults:[],
     }
   },
   methods: {
@@ -70,6 +70,8 @@ export default {
 
 <style lang="scss">
   @import './style/general';
+  @import './style/mixins';
+  @import './style/variables';
   @import '~@fortawesome/fontawesome-free/css/all.min.css';
 </style>
   
