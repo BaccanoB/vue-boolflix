@@ -60,7 +60,7 @@ export default {
             })
       },
       newQuery(text){
-        this.params.query=text;
+        this.params.query=text.trim();
         this.getMovies();
         this.getSeries();
       }
