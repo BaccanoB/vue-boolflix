@@ -10,7 +10,7 @@
                         <img class="flag" v-else-if="result.original_language == 'en'" src="../assets/en.png" alt="flag">
                         <p v-else >Lingua: {{ result.original_language }}</p>
                         <span class="star"><i :class="(star <= result.vote_average)? 'fas':'far'"
-                        v-for="(star,index) in 5" :key="index" class="fa-star"></i></span>
+                        v-for="star in 5" :key="star" class="fa-star"></i></span>
                         <p class="overview" v-if="result.overview ==''">No Description Available</p>
                         <p class="overview" v-else>{{ result.overview }}</p>
                     </div>
@@ -29,10 +29,13 @@ export default {
     name:'Main',
     props: ['search']
 }
-
 </script>
 
 <style lang="scss" scoped>
+
+    @import '../style/variables';
+    @import '../style/mixins';
+
     section {
         width: 100%;
         min-height: 100vh;
@@ -49,28 +52,28 @@ export default {
         #container {
             width: 90%;
             margin: 0 auto;
-            display: flex;
+            @include flex;
             flex-wrap: wrap;
-            align-items: center;
             justify-content: center;
 
             .card {
                 width: 342px;
                 height: 513px;
                 margin: 40px 10px;
-                box-shadow: 3px 3px 3px   rgba(241, 237, 237, 0.9);
+                box-shadow: 3px 3px 3px   rgba(180, 177, 177, 0.9);
                 overflow: hidden;
+                cursor: $pointer;
 
                 .info_container {
-                    display: none;
+                    display: $none;
                     height: 100%;
                     width: 100%;
                     padding: 20px;
                     background-color: rgb(36, 34, 34);
-                    color: white;
+                    color: $color_text;
 
                     span {
-                        color: #DC1A28;
+                        color: $netflix_red;
                         font-size: 25px;
                         text-transform: uppercase;
                     }
@@ -78,7 +81,6 @@ export default {
                     p {
                         font-size: 20px;
                         margin: 10px 0;
-
                     }
 
                     .star {
@@ -91,19 +93,19 @@ export default {
                         margin: 20px 0;
                     }
 
-                    .fa-star{
-                        color: #DC1A28;
+                    .fa-star {
+                        color: $netflix_red;
                     }
 
-                    .overview{
+                    .overview {
                         font-size: 15px;
                     }
                 }
 
-                .poster_container{
+                .poster_container {
                     height: 100%;
 
-                     img {
+                    img {
                         height: 100%;
                     }
 
@@ -115,17 +117,16 @@ export default {
                 }
             }
             .card:hover {
+                box-shadow:$none;
+
                 .info_container {
                     display: block;
                     transition: 3s;
                 }
                 .poster_container {
-                    display: none;
+                    display: $none;
                 }
             }
-        }
-
-
-        
+        }   
     }
 </style>

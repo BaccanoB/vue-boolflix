@@ -33,17 +33,17 @@ export default {
         axios
            .get('https://api.themoviedb.org/3/search/movie', {
              params: this.params
-           })
+            })
             .then((res) => {
               this.movies = res.data.results;
               this.movies.forEach(movie => {
                 movie.stelle = Math.ceil(movie.vote_average / 2);
-                movie.vote_average = movie.stelle
+                movie.vote_average = movie.stelle;
                 console.log("voto",movie.vote_average);
               })
-              this.allResults=this.movies.concat(this.series)
+              this.allResults=this.movies.concat(this.series);
             })
-        },
+      },
       getSeries(){
          axios
            .get('https://api.themoviedb.org/3/search/tv', {
@@ -53,10 +53,10 @@ export default {
               this.series = res.data.results;
               this.series.forEach(serie => {
                 serie.stelle = Math.floor(serie.vote_average / 2);
-                serie.vote_average = serie.stelle
+                serie.vote_average = serie.stelle;
                 console.log(serie.vote_average);
               })
-              this.allResults=this.series.concat(this.movies)
+              this.allResults=this.series.concat(this.movies);
             })
       },
       newQuery(text){
@@ -70,8 +70,6 @@ export default {
 
 <style lang="scss">
   @import './style/general';
-  @import './style/mixins';
-  @import './style/variables';
   @import '~@fortawesome/fontawesome-free/css/all.min.css';
 </style>
   
